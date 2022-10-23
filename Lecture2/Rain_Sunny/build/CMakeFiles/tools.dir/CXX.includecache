@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cear20/Desktop/Link to repos/modern-cpp-bonn/Lecture2/Rain_Sunny/src/tools.cpp
+iostream
+-
+tools.h
+/home/cear20/Desktop/Link to repos/modern-cpp-bonn/Lecture2/Rain_Sunny/src/tools.h
+
+/home/cear20/Desktop/Link to repos/modern-cpp-bonn/Lecture2/Rain_Sunny/src/tools.h
+
