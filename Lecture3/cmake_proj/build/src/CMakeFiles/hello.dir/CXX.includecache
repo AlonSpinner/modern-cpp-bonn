@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/cear20/Desktop/Link to repos/modern-cpp-bonn/Lecture3/cmake_proj/src/hello.cpp
+iostream
+-
+./hello.h
+/home/cear20/Desktop/Link to repos/modern-cpp-bonn/Lecture3/cmake_proj/src/hello.h
+
+/home/cear20/Desktop/Link to repos/modern-cpp-bonn/Lecture3/cmake_proj/src/hello.h
+

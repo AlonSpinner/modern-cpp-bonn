@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/bin_main.dir/main.cpp.o  -o bin_main  -Wl,-rpath,"/home/cear20/Desktop/Link to repos/modern-cpp-bonn/Lecture3/cmake_proj/build/src" libhello.a libblah.so 

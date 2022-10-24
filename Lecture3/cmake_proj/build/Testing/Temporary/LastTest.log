@@ -1,0 +1,29 @@
+Start testing: Oct 24 12:14 IDT
+----------------------------------------------------------
+1/1 Testing: test_blah
+1/1 Test: test_blah
+Command: "/home/cear20/Desktop/Link to repos/modern-cpp-bonn/Lecture3/cmake_proj/build/tests/test_blah"
+Directory: /home/cear20/Desktop/Link to repos/modern-cpp-bonn/Lecture3/cmake_proj/build/tests
+"test_blah" start time: Oct 24 12:14 IDT
+Output:
+----------------------------------------------------------
+Running main() from /usr/src/gtest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TestBlah
+[ RUN      ] TestBlah.OutputTest
+[       OK ] TestBlah.OutputTest (0 ms)
+[----------] 1 test from TestBlah (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_blah" end time: Oct 24 12:14 IDT
+"test_blah" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 24 12:14 IDT
