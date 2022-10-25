@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libtools.a  CMakeFiles/tools.dir/src/tools.cpp.o
-/usr/bin/ranlib ../lib/libtools.a

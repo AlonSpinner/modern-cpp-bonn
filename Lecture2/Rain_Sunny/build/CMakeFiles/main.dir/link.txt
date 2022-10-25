@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -O3 -DNDEBUG  -rdynamic CMakeFiles/main.dir/src/tools_main.cpp.o  -o ../bin/main  ../lib/libtools.a 
