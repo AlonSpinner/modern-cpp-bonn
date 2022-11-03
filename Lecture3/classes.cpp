@@ -5,7 +5,7 @@ class Student {
     public:
     Student(int id, string name): id_{id}, name_{name} {}
 
-    int id() const { //getter function, returns const value so it can be changed
+    int id() const { //getter function, returns const value so it cant be changed
         return id_;
     }
 
