@@ -54,14 +54,48 @@ namespace igg{
     const std::vector<float> Image::ComputeHistogram(int bins) const {
         std::vector<float> histogram(bins);
         histogram.reserve(bins);
-        for (int i = 0; i < data_.size(); i++) {
+        for (unsigned int i = 0; i < data_.size(); i++) {
             int bin = data_[i] / (max_val_ / bins);
             histogram[bin]++;
         }
-        for (int i = 0; i < histogram.size(); i++) {
+        for (unsigned int i = 0; i < histogram.size(); i++) {
             histogram[i] /= data_.size();
         }
         return histogram;
     }
 
+    void Image::DownScale(int scale) {
+        int new_rows = rows_ / scale;
+        int new_cols = cols_ / scale;
+        Image new_image(new_rows, new_cols);
+
+        for (int i = 0; i < new_rows; i++) {
+            for (int j = 0; j < new_cols; j++) {
+                new_image.at(i, j) = at(i * scale, j * scale);
+            }
+        }
+
+        rows_ = new_rows;
+        cols_ = new_cols;
+        data_ = new_image.data_;
+    }
+
+    void Image::UpScale(int scale) {
+        int new_rows = rows_ * scale;
+        int new_cols = cols_ * scale;
+        Image new_image(new_rows, new_cols);
+
+        for (int i = 0; i < new_rows; i++) {
+            for (int j = 0; j < new_cols; j++) {
+                new_image.at(i, j) = at(i / scale, j / scale);
+            }
+        }
+
+        rows_ = new_rows;
+        cols_ = new_cols;
+        data_ = new_image.data_;
+    }
+
 }
+
+

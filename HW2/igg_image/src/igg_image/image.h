@@ -19,6 +19,10 @@ namespace igg {
     //histogram
     const std::vector<float> ComputeHistogram(int bins) const;
 
+    //scale
+    void DownScale(int scale);
+    void UpScale(int scale);
+
   private:
     int rows_ = 0;
     int cols_ = 0;
