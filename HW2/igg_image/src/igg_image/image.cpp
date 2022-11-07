@@ -1,12 +1,12 @@
-
 #include "image.h"
 #include "io_tools.h"
 #include <iostream>
 
 namespace igg{
     Image::Image() {}; //default constructor
-    Image::Image(int rows, int cols) : rows_{rows}, cols_{cols} //non default constructor
-     {data_.reserve(rows * cols + 1);}
+    Image::Image(int rows, int cols) : rows_{rows}, cols_{cols} {
+        data_.resize(rows*cols, 0); //initalization
+    }; //non default constructor
 
     //getter function
     const int Image::at(int rows, int cols) const {
@@ -22,13 +22,14 @@ namespace igg{
     const bool Image::FillFromPgm(const std::string& file_name) {
         io_tools::ImageData image_data = io_tools::ReadFromPgm(file_name);
         if (image_data.data.empty()) {
+            std::cout << "no data in file" << std::endl;
             return false;
         }
         else {
             rows_ = image_data.rows;
             cols_ = image_data.cols;
             max_val_ = image_data.max_val;
-            data_ = image_data.data;
+            data_.assign(image_data.data.begin(), image_data.data.end());
             return true;
         }
     }
@@ -77,7 +78,7 @@ namespace igg{
 
         rows_ = new_rows;
         cols_ = new_cols;
-        data_ = new_image.data_;
+        data_ = new_image.data();
     }
 
     void Image::UpScale(int scale) {
@@ -93,7 +94,7 @@ namespace igg{
 
         rows_ = new_rows;
         cols_ = new_cols;
-        data_ = new_image.data_;
+        data_ = new_image.data();
     }
 
 }

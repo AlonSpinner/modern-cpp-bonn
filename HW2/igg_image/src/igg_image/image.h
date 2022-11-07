@@ -8,6 +8,11 @@ namespace igg {
     Image();
     Image(int rows, int cols);
 
+    //getter function
+    std::vector<int> data() const { return data_; }
+    int rows() const { return rows_; }
+    int cols() const { return cols_; }
+
     // at function
     const int at(int row, int col) const; //getter function
     int& at(int rows, int cols); // setter function
