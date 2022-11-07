@@ -2,7 +2,8 @@
    
 #################### Create a library 'image' below this line ##################
 add_library(image STATIC image.cpp)
+target_include_directories(image PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-#executable
-add_executable(main main.cpp)
-target_link_libraries(main image)
+# message(STATUS "!!!!!!!!!!!!!!!!!!!!!!!!")
+# message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
+# message(STATUS "!!!!!!!!!!!!!!!!!!!!!!!!")
