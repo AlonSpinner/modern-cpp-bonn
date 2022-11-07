@@ -1,5 +1,7 @@
 
 #include "image.h"
+#include "io_tools.h"
+#include <iostream>
 
 namespace igg{
     Image::Image() {}; //default constructor
@@ -15,6 +17,51 @@ namespace igg{
     //we then change the value in the reference
     int& Image::at(int rows, int cols) {
         return data_[rows * cols_ + cols];
+    }
+
+    const bool Image::FillFromPgm(const std::string& file_name) {
+        io_tools::ImageData image_data = io_tools::ReadFromPgm(file_name);
+        if (image_data.data.empty()) {
+            return false;
+        }
+        else {
+            rows_ = image_data.rows;
+            cols_ = image_data.cols;
+            max_val_ = image_data.max_val;
+            data_ = image_data.data;
+            return true;
+        }
+    }
+
+    void Image::WriteToPgm(const std::string& file_name) const {
+        //create variable
+        io_tools::ImageData image_data
+        {
+            rows_,
+            cols_,
+            max_val_,
+            data_
+        };
+
+        if (io_tools::WriteToPgm(image_data, file_name)) {
+            std::cout << "Image written to file: " << file_name << std::endl;
+        }
+        else {
+            std::cout << "Error writing image to file: " << file_name << std::endl;
+        }
+    }
+
+    const std::vector<float> Image::ComputeHistogram(int bins) const {
+        std::vector<float> histogram(bins);
+        histogram.reserve(bins);
+        for (int i = 0; i < data_.size(); i++) {
+            int bin = data_[i] / (max_val_ / bins);
+            histogram[bin]++;
+        }
+        for (int i = 0; i < histogram.size(); i++) {
+            histogram[i] /= data_.size();
+        }
+        return histogram;
     }
 
 }
