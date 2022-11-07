@@ -1,21 +1,20 @@
 
-class Image {
-    public:
-    Image() {} //default
-    Image(int rows, int cols) : rows_{rows}, cols_{cols} {} //constructor
-    
-    const int& at(int row, int col) const { //getter function
-        return data_[row * cols_ + col];
+#include "image.h"
+
+namespace igg{
+    Image::Image() {}; //default constructor
+    Image::Image(int rows, int cols) : rows_{rows}, cols_{cols} //non default constructor
+     {data_.reserve(rows * cols + 1);}
+
+    //getter function
+    const int Image::at(int rows, int cols) const {
+        return data_[rows * cols_ + cols];
+    }
+    //setter function. 
+    //his returns a pointer to the element at the specified location
+    //we then change the value in the reference
+    int& Image::at(int rows, int cols) {
+        return data_[rows * cols_ + cols];
     }
 
-    const int at(int row, int col) const {
-        return data_[row*cols_ + col];
-    }
-
-    int rows() const {return rows_;}
-    int cols() const {return cols_;}
-
-    private:
-    const int rows_ = 0;
-    const int cols_ = 0;
-};
+}
