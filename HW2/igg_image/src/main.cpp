@@ -18,7 +18,7 @@ int main()
     fs::path up_filename ("lena.ascii_up.pgm");
     fs::path up_full_path = data_dir / up_filename;
     image_up.FillFromPgm(originial_full_path);
-    image_up.UpScale(2);
+    image_up.UpScale(10);
     image_up.WriteToPgm(up_full_path);
 
     igg::Image image_down;
@@ -28,7 +28,7 @@ int main()
     image_down.DownScale(2);
     image_down.WriteToPgm(down_full_path);
 
-    const std::vector<float> h = image.ComputeHistogram(10);
+    const std::vector<float> h = image.ComputeHistogram(4);
     std::cout << "original image histogram "<< std::endl;
     for (int i = 0; i < h.size(); i++) {
         std::cout << h[i] << " ";
