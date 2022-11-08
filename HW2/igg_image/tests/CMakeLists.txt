@@ -7,6 +7,15 @@
 add_subdirectory(/usr/src/gtest
                  ${PROJECT_BINARY_DIR}/gtest)
 include(CTest) # Include testing cmake package.
-set(TEST_BINARY ${PROJECT_NAME}_test)
+# set(TEST_BINARY ${PROJECT_NAME}_test)
 
 ##################### Create your tests below this line ########################
+
+add_executable(t01 t01_image_init.cpp)
+target_link_libraries(t01 
+                      image
+                      gtest gtest_main                
+                      )
+add_test(NAME t01
+         COMMAND ${EXECUTABLE_OUTPUT_PATH}/t01)
+
