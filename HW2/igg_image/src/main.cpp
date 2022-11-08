@@ -1,26 +1,32 @@
 #include "image.h"
 #include <iostream>
 #include <string>
+#include <filesystem>
 
+namespace fs = std::filesystem;
 
 int main()
 {
-    // igg::Image image(3, 3);
-    // std::vector<int> data = image.data();
-
-    std::string file_name = "/home/cear20/Desktop/Link to repos/modern-cpp-bonn/HW2/igg_image/data/lena.ascii.pgm";
+    std::string data_path = DATA_PATH; //defined in CMakeLists.txt
+    fs::path data_dir (data_path); 
+    fs::path original_filename ("lena.ascii.pgm");
+    fs::path originial_full_path = data_dir / original_filename;
     igg::Image image;
-    image.FillFromPgm(file_name);
+    image.FillFromPgm(originial_full_path);
 
     igg::Image image_up;
-    image_up.FillFromPgm(file_name);
+    fs::path up_filename ("lena.ascii_up.pgm");
+    fs::path up_full_path = data_dir / up_filename;
+    image_up.FillFromPgm(originial_full_path);
     image_up.UpScale(2);
-    image_up.WriteToPgm("/home/cear20/Desktop/Link to repos/modern-cpp-bonn/HW2/igg_image/data/lena.ascii_up.pgm");
+    image_up.WriteToPgm(up_full_path);
 
     igg::Image image_down;
-    image_down.FillFromPgm(file_name);
+    fs::path down_filename ("lena.ascii_down.pgm");
+    fs::path down_full_path = data_dir / down_filename;
+    image_down.FillFromPgm(originial_full_path);
     image_down.DownScale(2);
-    image_down.WriteToPgm("/home/cear20/Desktop/Link to repos/modern-cpp-bonn/HW2/igg_image/data/lena.ascii_down.pgm");
+    image_down.WriteToPgm(down_full_path);
 
     const std::vector<float> h = image.ComputeHistogram(10);
     std::cout << "original image histogram "<< std::endl;
