@@ -6,8 +6,7 @@ namespace igg{
     Image::Image(const IoStrategy& io_strategy) : io_strategy_{io_strategy} {}
     Image::Image(int rows, int cols, const IoStrategy& io_strategy) : 
                 rows_{rows}, cols_{cols}, io_strategy_{io_strategy} {
-        const Pixel pixel0{0, 0 ,0};
-        data_.resize(rows*cols, pixel0); //initalization
+        data_.resize(rows*cols, Pixel{0, 0 ,0}); //initalization
     } //non default constructor
 
     const Image::Pixel Image::at(int row, int col) const {
@@ -50,20 +49,21 @@ namespace igg{
         data_ = new_image.data();
     }
 
-    //  const bool ReadFromDisk(const std::string& file_name) {
-    //     ImageData io_strategy_.Read(file_name);
-    //     rows_ = ImageData.rows;
-    //     cols_ = ImageData.cols;
-    //     max_val_ = ImageData.max_val;
+     const bool Image::ReadFromDisk(const std::string& file_name) {
+        ImageData imageData = io_strategy_.Read(file_name);
+        rows_ = imageData.rows;
+        cols_ = imageData.cols;
+        max_val_ = imageData.max_val;
 
-    //     for (int i = 0; i < rows_; i++) {
-    //         for (int j = 0; j < cols_; j++) {
-    //             red = ImageData.data[0][i * cols_ + j];
-    //             green = ImageData.data[1][i * cols_ + j];
-    //             blue = ImageData.data[2][i * cols_ + j];
-    //             at(i, j) = Pixel(red, green, blue);
-    //         }
-    //     }
-    //     data_ = ImageData.data;
-    //  }
+        data_.clear();
+        data_.resize(rows_ * cols_, Pixel{0,0,0});
+        for (int i = 0; i < rows_; i++) {
+            for (int j = 0; j < cols_; j++) {
+                int red = imageData.data[0][i * cols_ + j];
+                int green = imageData.data[1][i * cols_ + j];
+                int blue = imageData.data[2][i * cols_ + j];
+                at(i, j) = Pixel{red, green, blue};
+            }
+        }
+     }
 }

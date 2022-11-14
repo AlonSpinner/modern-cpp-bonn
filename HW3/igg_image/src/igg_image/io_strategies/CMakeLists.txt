@@ -1,3 +1,5 @@
+find_package(PNG REQUIRED)
+
 add_library(strategies
             png_strategy.cpp
             dummy_strategy.cpp)
