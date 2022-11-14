@@ -5,11 +5,14 @@
 #pragma once
 
 #include <vector>
+#include "io_strategies/png_strategy.h"
 
 namespace igg {
 
 class Image {
  public:
+  Image(const IoStrategy& io_strategy);
+  Image(int rows, int cols, const IoStrategy& io_strategy);
   /// A struct within class Image that defines a pixel.
   struct Pixel {
     int red;
@@ -17,16 +20,29 @@ class Image {
     int blue;
   };
 
-  // TODO: fill public interface.
+  //getter function
+  std::vector<Pixel> data() const { return data_; }
+  int rows() const { return rows_; }
+  int cols() const { return cols_; }
+
+  // at function
+  const Pixel at(int row, int col) const; //getter function
+  Pixel& at(int row, int col); // setter function
+
+  //scale
+  void DownScale(int scale);
+  void UpScale(int scale);
+
+  // pgm
+  const bool ReadFromDisk(const std::string& file_name);
+  void WriteToDisk(const std::string& file_name) const;
 
  private:
-
-  // TODO: add missing private members when needed.
-
-  int rows_ = 0;
-  int cols_ = 0;
-  int max_val_ = 255;
-  std::vector<Pixel> data_;
+    int rows_ = 0;
+    int cols_ = 0;
+    int max_val_= 255;
+    std::vector<Pixel> data_;
+    const IoStrategy& io_strategy_;
 };
 
 }  // namespace igg

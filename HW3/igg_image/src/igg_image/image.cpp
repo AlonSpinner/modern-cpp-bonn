@@ -1,0 +1,69 @@
+#include <vector>
+#include "image.h"
+#include "io_strategies/strategy.h"
+
+namespace igg{
+    Image::Image(const IoStrategy& io_strategy) : io_strategy_{io_strategy} {}
+    Image::Image(int rows, int cols, const IoStrategy& io_strategy) : 
+                rows_{rows}, cols_{cols}, io_strategy_{io_strategy} {
+        const Pixel pixel0{0, 0 ,0};
+        data_.resize(rows*cols, pixel0); //initalization
+    } //non default constructor
+
+    const Image::Pixel Image::at(int row, int col) const {
+        return data_[row * cols_ + col];
+    } //getter function
+
+    Image::Pixel& Image::at(int row, int col) {
+        return data_[row * cols_ + col];
+    }// setter function
+
+    void Image::DownScale(int scale) {
+    int new_rows = rows_ / scale;
+    int new_cols = cols_ / scale;
+    Image new_image(new_rows, new_cols, io_strategy_);
+
+    for (int i = 0; i < new_rows; i++) {
+        for (int j = 0; j < new_cols; j++) {
+            new_image.at(i, j) = at(i * scale, j * scale);
+        }
+    }
+
+    rows_ = new_rows;
+    cols_ = new_cols;
+    data_ = new_image.data();
+    }
+
+    void Image::UpScale(int scale) {
+        int new_rows = rows_ * scale;
+        int new_cols = cols_ * scale;
+        Image new_image(new_rows, new_cols, io_strategy_);
+
+        for (int i = 0; i < new_rows; i++) {
+            for (int j = 0; j < new_cols; j++) {
+                new_image.at(i, j) = at(i / scale, j / scale);
+            }
+        }
+
+        rows_ = new_rows;
+        cols_ = new_cols;
+        data_ = new_image.data();
+    }
+
+    //  const bool ReadFromDisk(const std::string& file_name) {
+    //     ImageData io_strategy_.Read(file_name);
+    //     rows_ = ImageData.rows;
+    //     cols_ = ImageData.cols;
+    //     max_val_ = ImageData.max_val;
+
+    //     for (int i = 0; i < rows_; i++) {
+    //         for (int j = 0; j < cols_; j++) {
+    //             red = ImageData.data[0][i * cols_ + j];
+    //             green = ImageData.data[1][i * cols_ + j];
+    //             blue = ImageData.data[2][i * cols_ + j];
+    //             at(i, j) = Pixel(red, green, blue);
+    //         }
+    //     }
+    //     data_ = ImageData.data;
+    //  }
+}
