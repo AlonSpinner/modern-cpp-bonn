@@ -66,4 +66,21 @@ namespace igg{
             }
         }
      }
+    
+    void Image::WriteToDisk(const std::string& file_name) const {
+ 
+        std::vector<int> red; red.reserve(rows_ * cols_);
+        std::vector<int> green; green.reserve(rows_ * cols_);
+        std::vector<int> blue; blue.reserve(rows_ * cols_);
+        for (int i = 0; i < rows_; i++) {
+            for (int j = 0; j < cols_; j++) {
+                Pixel pixel = at(i, j);
+                red.emplace_back(pixel.red);
+                green.emplace_back(pixel.green);
+                blue.emplace_back(pixel.blue);
+            }
+        }
+        ImageData imageData{rows_, cols_, max_val_, {red, green, blue}};
+        io_strategy_.Write(file_name, imageData);
+    }
 }
