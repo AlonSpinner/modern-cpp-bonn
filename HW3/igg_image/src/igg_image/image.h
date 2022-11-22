@@ -24,6 +24,7 @@ class Image {
   std::vector<Pixel> data() const { return data_; }
   int rows() const { return rows_; }
   int cols() const { return cols_; }
+  int max_val() const { return max_val_; }
 
   // at function
   const Pixel at(int row, int col) const; //getter function

@@ -51,20 +51,21 @@ namespace igg{
 
      const bool Image::ReadFromDisk(const std::string& file_name) {
         ImageData imageData = io_strategy_.Read(file_name);
-        rows_ = imageData.rows;
-        cols_ = imageData.cols;
-        max_val_ = imageData.max_val;
+        // rows_ = imageData.rows;
+        // cols_ = imageData.cols;
+        // max_val_ = imageData.max_val;
 
-        data_.clear();
-        data_.resize(rows_ * cols_, Pixel{0,0,0});
-        for (int i = 0; i < rows_; i++) {
-            for (int j = 0; j < cols_; j++) {
-                int red = imageData.data[0][i * cols_ + j];
-                int green = imageData.data[1][i * cols_ + j];
-                int blue = imageData.data[2][i * cols_ + j];
-                at(i, j) = Pixel{red, green, blue};
-            }
-        }
+        // data_.clear();
+        // data_.resize(rows_ * cols_, Pixel{0,0,0});
+        // for (int i = 0; i < rows_; i++) {
+        //     for (int j = 0; j < cols_; j++) {
+        //         int red = imageData.data[0][i * cols_ + j];
+        //         int green = imageData.data[1][i * cols_ + j];
+        //         int blue = imageData.data[2][i * cols_ + j];
+        //         at(i, j) = Pixel{red, green, blue};
+        //     }
+        // }
+        return 1;
      }
     
     void Image::WriteToDisk(const std::string& file_name) const {

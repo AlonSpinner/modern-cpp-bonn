@@ -3,7 +3,7 @@
 // Email: igor.bogoslavskyi@uni-bonn.de.
 
 #include <string>
-
+#include <vector>
 #include "igg_image/io_strategies/dummy_strategy.h"
 
 namespace igg {
@@ -12,7 +12,9 @@ bool DummyIoStrategy::Write(const std::string&, const ImageData&) const {
   return true;
 }
 ImageData DummyIoStrategy::Read(const std::string&) const {
-  return ImageData{0, 0, 0, {{}}};
+  // return ImageData{0, 0, 0, {{}}};
+  std::vector<std::vector<int>> data{{0},{0},{0}};
+  return ImageData{1, 1, 255, data};
 }
 
 }  // namespace igg
