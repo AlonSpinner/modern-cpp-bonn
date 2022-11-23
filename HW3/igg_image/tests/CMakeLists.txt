@@ -8,7 +8,7 @@ add_executable(
  test_resize.cpp
  test_dummy_strategy.cpp
  test_histogram.cpp
- # test_from_ppm.cpp
+ test_ppm_strategy.cpp
  test_png_strategy.cpp
  test_clone.cpp
 )

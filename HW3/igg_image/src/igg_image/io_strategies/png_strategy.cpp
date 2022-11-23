@@ -2,7 +2,7 @@
 // In case of any problems with the code please contact me.
 // Email: igor.bogoslavskyi@uni-bonn.de.
 
-#include "igg_image/io_strategies/png_strategy.h"
+#include "png_strategy.h"
 #include <string>
 #include <vector>
 
