@@ -1,6 +1,4 @@
-#include <vector>
 #include "image.h"
-#include "io_strategies/strategy.h"
 
 namespace igg{
     Image::Image(const IoStrategy& io_strategy) : io_strategy_{io_strategy} {}
@@ -51,21 +49,23 @@ namespace igg{
 
      const bool Image::ReadFromDisk(const std::string& file_name) {
         ImageData imageData = io_strategy_.Read(file_name);
-        // rows_ = imageData.rows;
-        // cols_ = imageData.cols;
-        // max_val_ = imageData.max_val;
+        // std::vector<std::vector<int>> data{{0},{0},{0}};
+        // ImageData imageData = {1, 1, 255, data};
+        rows_ = imageData.rows;
+        cols_ = imageData.cols;
+        max_val_ = imageData.max_val;
 
-        // data_.clear();
-        // data_.resize(rows_ * cols_, Pixel{0,0,0});
-        // for (int i = 0; i < rows_; i++) {
-        //     for (int j = 0; j < cols_; j++) {
-        //         int red = imageData.data[0][i * cols_ + j];
-        //         int green = imageData.data[1][i * cols_ + j];
-        //         int blue = imageData.data[2][i * cols_ + j];
-        //         at(i, j) = Pixel{red, green, blue};
-        //     }
-        // }
-        return 1;
+        data_.clear();
+        data_.resize(rows_ * cols_, Pixel{0,0,0});
+        for (int i = 0; i < rows_; i++) {
+            for (int j = 0; j < cols_; j++) {
+                int red = imageData.data[0][i * cols_ + j];
+                int green = imageData.data[1][i * cols_ + j];
+                int blue = imageData.data[2][i * cols_ + j];
+                at(i, j) = Pixel{red, green, blue};
+            }
+        }
+        return true;
      }
     
     void Image::WriteToDisk(const std::string& file_name) const {

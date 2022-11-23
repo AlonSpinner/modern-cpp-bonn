@@ -13,10 +13,8 @@
 namespace igg {
 
 class PngIoStrategy : public IoStrategy {
- public:
-  bool Write(const std::string& file_name,
-             const ImageData& data) const override;
-  ImageData Read(const std::string& file_name) const override;
+  public: bool Write(const std::string& file_name, const ImageData& data) const override;
+  public: ImageData Read(const std::string& file_name) const override;
 };
 
 }  // namespace igg

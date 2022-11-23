@@ -5,7 +5,9 @@
 #pragma once
 
 #include <vector>
+#include "io_strategies/strategy.h"
 #include "io_strategies/png_strategy.h"
+#include "io_strategies/dummy_strategy.h"
 
 namespace igg {
 
@@ -25,6 +27,7 @@ class Image {
   int rows() const { return rows_; }
   int cols() const { return cols_; }
   int max_val() const { return max_val_; }
+  const IoStrategy& get_io_strategy() const { return io_strategy_; }
 
   // at function
   const Pixel at(int row, int col) const; //getter function

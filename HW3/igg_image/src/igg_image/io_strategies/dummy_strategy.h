@@ -4,15 +4,13 @@
 
 #pragma once
 
-#include <string>
-
-#include "igg_image/io_strategies/strategy.h"
+#include "strategy.h"
 
 namespace igg {
 
 class DummyIoStrategy : public IoStrategy {
-  bool Write(const std::string&, const ImageData&) const override;
-  ImageData Read(const std::string&) const override;
+  public: bool Write(const std::string& file_name, const ImageData& data) const override;
+  public: ImageData Read(const std::string& file_name) const override;
 };
 
 }  // namespace igg
