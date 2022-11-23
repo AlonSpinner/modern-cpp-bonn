@@ -7,6 +7,12 @@ namespace igg{
         data_.resize(rows*cols, Pixel{0, 0 ,0}); //initalization
     } //non default constructor
 
+    Image Image::Clone() const {
+        Image image(rows_, cols_, io_strategy_);
+        image.data_ = this->data();
+        return image;
+    }
+
     const Image::Pixel Image::at(int row, int col) const {
         return data_[row * cols_ + col];
     } //getter function

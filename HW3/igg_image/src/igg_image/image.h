@@ -29,6 +29,9 @@ class Image {
   int max_val() const { return max_val_; }
   const IoStrategy& get_io_strategy() const { return io_strategy_; }
 
+  //clone
+  Image Clone() const;
+
   // at function
   const Pixel at(int row, int col) const; //getter function
   Pixel& at(int row, int col); // setter function

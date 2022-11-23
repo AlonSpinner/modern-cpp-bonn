@@ -10,6 +10,7 @@ add_executable(
  # test_histogram.cpp
  # test_from_ppm.cpp
  test_from_png.cpp
+ test_clone.cpp
 )
 target_link_libraries(${TEST_BINARY}
   image
