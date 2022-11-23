@@ -13,7 +13,7 @@ TEST(test_dummy_strategy, read) {
 
     igg::DummyIoStrategy strat;
     igg::Image image{strat};
-    const bool a = image.ReadFromDisk(full_path.string());
+    bool a = image.ReadFromDisk(full_path.string());
     EXPECT_EQ(1, a);
 }
 
@@ -25,7 +25,7 @@ TEST(test_dummy_strategy, write) {
 
     igg::DummyIoStrategy strat;
     igg::Image image{strat};
-    const bool a = image.ReadFromDisk(full_path.string());
+    image.ReadFromDisk(full_path.string());
 
     image.WriteToDisk(full_path.string());
 }

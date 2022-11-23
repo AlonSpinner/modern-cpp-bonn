@@ -53,7 +53,20 @@ namespace igg{
         data_ = new_image.data();
     }
 
-     const bool Image::ReadFromDisk(const std::string& file_name) {
+    const std::vector<std::vector<float>> Image::ComputeHistogram(int bins) const {
+        std::vector<std::vector<float>> histogram(3, std::vector<float>(bins, 0.0));
+        for (int i = 0; i < rows_; i++) {
+            for (int j = 0; j < cols_; j++) {
+                Pixel pixel = at(i, j);
+                histogram[0][pixel.red / (max_val_ / bins)]++;
+                histogram[1][pixel.green / (max_val_ / bins)]++;
+                histogram[2][pixel.blue / (max_val_ / bins)]++;
+            }
+        }
+        return histogram;
+    }
+
+    bool Image::ReadFromDisk(const std::string& file_name) {
         ImageData imageData = io_strategy_.Read(file_name);
         // std::vector<std::vector<int>> data{{0},{0},{0}};
         // ImageData imageData = {1, 1, 255, data};

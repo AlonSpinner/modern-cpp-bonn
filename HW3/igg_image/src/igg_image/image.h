@@ -40,8 +40,11 @@ class Image {
   void DownScale(int scale);
   void UpScale(int scale);
 
-  // pgm
-  const bool ReadFromDisk(const std::string& file_name);
+  //histogram
+  const std::vector<std::vector<float>> ComputeHistogram(int bins) const;
+
+  // strategy
+  bool ReadFromDisk(const std::string& file_name);
   void WriteToDisk(const std::string& file_name) const;
 
  private:
